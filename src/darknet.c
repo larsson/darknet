@@ -13,7 +13,7 @@
 #endif
 
 extern void predict_classifier(char *datacfg, char *cfgfile, char *weightfile, char *filename, int top);
-extern void test_detector(char *datacfg, char *cfgfile, char *weightfile, char *filename, float thresh, float hier_thresh);
+extern void test_detector(char *datacfg, char *cfgfile, char *weightfile, char *filename, float thresh, float hier_thresh, char *outputpath);
 extern void run_voxel(int argc, char **argv);
 extern void run_yolo(int argc, char **argv);
 extern void run_detector(int argc, char **argv);
@@ -385,7 +385,7 @@ int main(int argc, char **argv)
     } else if (0 == strcmp(argv[1], "detect")){
         float thresh = find_float_arg(argc, argv, "-thresh", .24);
         char *filename = (argc > 4) ? argv[4]: 0;
-        test_detector("cfg/coco.data", argv[2], argv[3], filename, thresh, .5);
+        test_detector("cfg/coco.data", argv[2], argv[3], filename, thresh, .5, "/input/output.mp4");
     } else if (0 == strcmp(argv[1], "cifar")){
         run_cifar(argc, argv);
     } else if (0 == strcmp(argv[1], "go")){
@@ -397,7 +397,7 @@ int main(int argc, char **argv)
     } else if (0 == strcmp(argv[1], "coco")){
         run_coco(argc, argv);
     } else if (0 == strcmp(argv[1], "classify")){
-        predict_classifier("cfg/imagenet1k.data", argv[2], argv[3], argv[4], 5, "/input/output.mp4");
+        predict_classifier("cfg/imagenet1k.data", argv[2], argv[3], argv[4], 5);
     } else if (0 == strcmp(argv[1], "classifier")){
         run_classifier(argc, argv);
     } else if (0 == strcmp(argv[1], "art")){
