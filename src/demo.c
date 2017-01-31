@@ -177,6 +177,8 @@ void demo(char *cfgfile, char *weightfile, float thresh, int cam_index, const ch
                     else frame_skip = 0;
                 }
             }else{
+              printf("Got prefix!");
+              printf(prefix);
                 char buff[256];
                 sprintf(buff, "%s_%08d", prefix, count);
                 save_image(disp, buff);
