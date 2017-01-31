@@ -515,7 +515,7 @@ void save_image_jpg(image p, const char *name)
     int x,y,k;
 
     char buff[256];
-    sprintf(buff, "/input/data/%s.jpg", name);
+    sprintf(buff, "/%s.jpg", name);
 
     IplImage *disp = cvCreateImage(cvSize(p.w,p.h), IPL_DEPTH_8U, p.c);
     int step = disp->widthStep;
@@ -526,7 +526,7 @@ void save_image_jpg(image p, const char *name)
             }
         }
     }
-    cvSaveImage(buff, disp,0);
+    cvSaveImage(buff, disp, 100);
     cvReleaseImage(&disp);
     free_image(copy);
 }
